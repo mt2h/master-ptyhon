@@ -1,21 +1,24 @@
+#pip install mysql-connector-python
+#CREATE USER 'user'@'%' IDENTIFIED BY 'XhS8eSDaQtVh7stW';
+#GRANT ALL PRIVILEGES ON * . * TO 'user'@'%';
 import mysql.connector
 
 #conexion
 
 database = mysql.connector.connect(
     host="localhost",
-    user="root",
-    passwd="",
+    user="user",
+    passwd="XhS8eSDaQtVh7stW",
     database="master_python"
 )
 
 #como saber si hay conexon
 
-#print(database)
+print(database)
 
 cursor=database.cursor(buffered=True) #para poder hacer varias consultas a la base de datos
 
-cursor.execute("CREATE DATABASE IF NOT EXISTS Master_python")
+cursor.execute("CREATE DATABASE IF NOT EXISTS master_python")
 cursor.execute("SHOW databases")
 
 for bd in cursor:
@@ -40,8 +43,7 @@ for table in cursor:
 
 """
 cursor.execute("INSERT INTO vehiculos VALUES(null,'Opel','Astra',18000)")
-
-
+database.commit()
 """
 
 """
@@ -55,8 +57,8 @@ coches=[
 cursor.executemany("INSERT INTO vehiculos VALUES (null, %s, %s, %s)", coches)
 database.commit()
 """
-#sacer la info de la bbdd
 
+#sacer la info de la bbdd
 cursor.execute("SELECT * FROM vehiculos WHERE precio <=5000 and marca='Seat'")
 result=cursor.fetchall()
 
