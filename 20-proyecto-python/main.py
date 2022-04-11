@@ -1,5 +1,5 @@
 """
-Proyecto python y mysql:
+ Proyecto python y mysql:
     -Abrir un asistente
     -Login o registro
     -Si registro, creara un usuario en la bd
