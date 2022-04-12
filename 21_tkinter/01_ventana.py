@@ -7,16 +7,16 @@ from tkinter import *
 ventana = Tk() #Creamos un objeto
 
 #Ajustar el título de la ventana
-#ventana.title("Interfaz gráfica con Python (por LC)")
+ventana.title("Interfaz gráfica con Python (por LC)")
 
 #Cargamos el "favicon"
 #ventana.iconbitmap("./imagenes/alarm.ico")
 
 #Ajustar el tamaño de la ventana
-#ventana.geometry("750x400")
+ventana.geometry("750x400")
 
 #Bloquear el tamaño de la ventana
-#ventana.resizable(0, 0)
+ventana.resizable(0, 0)
 
 #Arrancar y mostrar la ventana hasta que se cierre
 ventana.mainloop()
