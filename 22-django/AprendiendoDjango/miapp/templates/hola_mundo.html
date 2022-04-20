@@ -1,1 +1,11 @@
-<p>hola_mundo con DJango!!</p>
+{% extends 'layout.html' %}
+
+{% block title %}
+    hola mundo 
+{% endblock %}
+
+{% block content %}
+    <h1 class="title">Hola mundo con Django!!</h1>
+    <h2>Desarrollando html</h2>
+    {{block.super}}
+{% endblock %}
