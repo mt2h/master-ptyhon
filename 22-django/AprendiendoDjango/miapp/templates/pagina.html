@@ -5,6 +5,22 @@
 {% endblock %}
 
 {% block content %}
-<h1 class="title">aaaaa</h1>
-<p>bbbbbbbb</p>
+<h1 class="title">Página de mi Web</h1>
+<h2> {{"Esta es una página alternativa de la principal."|cut:" " }}</h2>
+<h2> {{"Esta es una página alternativa de la principal ñññ."|cut:"ñ" }}</h2>
+<p> {{ texto|default:"No hay nada" }} </p>
+<ul>
+    <li> <strong> Primer Elemento: </strong> {{ lista|first }} </li>
+    <li> <strong> Último elemento: </strong> {{ lista|last }} </li>
+    <li> <strong> Número Aleatorio: </strong> {{ lista|random }} </li>
+    <li> <strong> Concatenación: </strong> {{ lista|join:', ' }} </li>
+    <li> <strong> Longitud: </strong> {{ lista|length }} </li>
+</ul>
+<p>{{"texto pruebas"|length}}</p>
+<p>{{"texto pruebas"|upper}}</p>
+<p>{{"Texto Pruebas"|lower}}</p>
+<p>{{ "<h1>texto</h1> <strong>Pruebas</strong> hola <p> mundo </p> "|striptags }}
+<p>{{ "<h1>texto</h1> <strong>Pruebas</strong> hola <p> mundo </p> "|striptags|wordcount }}
+{% load filters %}
+{{"Victor Robles Web"|saludo|safe}}
 {% endblock %}

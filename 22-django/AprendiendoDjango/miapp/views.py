@@ -49,13 +49,18 @@ def index(request):
 
     #return HttpResponse(layout+html)
 
+    nombre = 'Victor Robles'
+    lenguajes = ['Javascript', 'Python', 'PHP', 'C']
+    year = 2020
+    rango = range(year, 2051)
+
     return render(request, 'index.html',  {
         'title': 'Inicio',
-        #'mi_variable': 'Soy un dato que está en la vista',
-        #'nombre': nombre,
-        #'lenguajes': lenguajes,
-        #'year': year,
-        #'rango': rango
+        'mi_variable': 'Soy un dato que está en la vista',
+        'nombre': nombre,
+        'lenguajes': lenguajes,
+        'year': year,
+        'rango': rango
     })
 
 def pagina(request, redirigir=0):
@@ -69,10 +74,10 @@ def pagina(request, redirigir=0):
     #    <h1>Página de mi Web</h1>
     #    """)
 
-    return render(request, 'pagina.html' #, {
-        #'texto': 'Este es mi texto',
-        #'lista': ["uno", "dos", "tres"]
-    #}
+    return render(request, 'pagina.html' , {
+        'texto': 'Este es mi texto',
+        'lista': ["uno", "dos", "tres"]
+    }
     )
 
 def contacto(request, nombre="Victor", apellido="Robles"): 

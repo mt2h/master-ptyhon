@@ -1,10 +1,33 @@
 {% extends 'layout.html' %}
 
-{% block title %}
-    Inicio
-{% endblock %}
+{% block title %}{{ title }}{% endblock %}
 
 {% block content %}
-<h1 class="title">Inicio</h1>
-<p>Años hasta el 2050</p>
+<!-- Esto es un comentario en HTML -->
+{% comment "Nota para el comentario" %}
+<h1>Hola hola hola</h1>
+{% endcomment %}
+
+<h1 class="title">{{ title }}</h1>
+<p>{{ mi_variable  }}</p>
+
+{% if nombre and nombre == 'Victor Robles' %}
+<p>{{nombre}}</p>
+{% else %}
+<strong>El nombre no existe o no coincide</strong>
+{% endif %}
+
+<h3>Listado de Lenguajes de Programación</h3>
+<ul>
+{% for lenguaje in lenguajes %}
+    <li> {{lenguaje}} {{forloop.first}} {{forloop.last}} {{forloop.counter}} {{forloop.counter0}} {{forloop.revcounter}} {{forloop.revcounter0}}</li>
+    {% empty %}
+     <p><strong>No hay lenguajes que mostrar</strong></p>
+{% endfor %}
+</ul>
+
+{% include 'fecha_actual.html' with saludo="Hola mundo desde plantilla Index"%}
+{% include 'fecha_actual.html' with saludo="Hola mundo desde plantilla Index" only%} 
+
+
 {% endblock %}
