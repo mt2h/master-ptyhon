@@ -1,4 +1,6 @@
 from django.shortcuts import render, HttpResponse, redirect
+from miapp.models import Article
+from django.db.models import Q
 
 # Create your views here.
 # render: Devuelve la template que queremos cargar desde la View, pero debe buscarla
@@ -89,3 +91,72 @@ def contacto(request, nombre="Victor", apellido="Robles"):
         html += "<p>El nombre completo es:</p>"
         html += f" <h3>{nombre} {apellido}</h3>"
     return HttpResponse(layout + html)
+
+def crear_articulo(request, title='', content='', public=''):
+
+    articulo = Article(
+        title = title,
+        content = content,
+        public = public
+    )
+
+    # # método save() es para guardarlo en la BD.
+    articulo.save()
+
+    return HttpResponse(f'<p>Artículo creado: </p><p><strong>Título: </strong>{articulo.title}</p> <p><strong>Contenido: </strong>{articulo.content }</p>')
+
+def articulo(request):
+    try:
+        articulo = Article.objects.get(pk=1)
+        #articulo = Article.objects.get(id=1, public=True)
+        response = f'Articulo: </br> {articulo.id} - {articulo.title}'
+    except:
+        response = '<h1>Artículo no encontrado</h1>'
+        
+    return HttpResponse(response)
+
+def editar_articulo(request, id):
+    articulo = Article.objects.get(pk=id)
+
+    articulo.title = "Batman"
+    articulo.content = "Movie created on 2017"
+    articulo.public = True
+
+    articulo.save()
+
+    return HttpResponse(f"Articulo modificado: {articulo.id}.{articulo.title}")
+
+def articulos(request):
+    #articulos = Article.objects.all()
+    #articulos = Article.objects.all().order_by('-id') #- DESC
+    #articulos = Article.objects.all().order_by('-id')[:1]
+
+    #articulos = Article.objects.filter(title="myarticle", id=1)
+    #articulos = Article.objects.filter(title__contains="article")
+    #articulos = Article.objects.filter(title__exact="myarticle")
+    #articulos = Article.objects.filter(title__iexact="myarticle") # no diference between upper and lower text
+    #articulos = Article.objects.filter(id__gt=5) # id > 5
+    #articulos = Article.objects.filter(id__gte=5) # id >= 5
+    #articulos = Article.objects.filter(id__lt=5) # id < 5
+    #articulos = Article.objects.filter(id__lte=5, title__contains="articulo") # id <= 5
+     
+    #articulos = Article.objects.filter(
+    #    title="Articulo 1"
+    #).exclude(public=False)
+
+    #Para consultas SQL:
+    #articulos = Article.objects.raw("SELECT * FROM miapp_article WHERE title = 'Articulo 2' AND public = true")
+    
+    articulos = Article.objects.filter(
+        Q(title__contains="Art") | Q(public__contains=True)
+    )
+
+    return render(request, 'articulos.html', {
+        'articulos': articulos
+    })
+
+def borrar_articulo(request, id):
+    articulo = Article.objects.get(pk=id)
+    articulo.delete()
+
+    return redirect('articulos')
