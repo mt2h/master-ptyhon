@@ -6,6 +6,12 @@ Listado de artículos
 
 {% block content %}
 <h1 class="title">Listado de artículos</h1>
+
+{% if messages %}
+    {% for message in messages %}
+        <div class="message">{{ message }}</div>
+    {% endfor%}
+{% endif %}
     
         {% for articulo in articulos %}
             <article class="article-item">

@@ -1,6 +1,8 @@
 from django.shortcuts import render, HttpResponse, redirect
 from miapp.models import Article
 from django.db.models import Q
+from miapp.forms import FormArticle
+from django.contrib import messages
 
 # Create your views here.
 # render: Devuelve la template que queremos cargar desde la View, pero debe buscarla
@@ -105,6 +107,74 @@ def crear_articulo(request, title='', content='', public=''):
 
     return HttpResponse(f'<p>Artículo creado: </p><p><strong>Título: </strong>{articulo.title}</p> <p><strong>Contenido: </strong>{articulo.content }</p>')
 
+def save_article(request):
+    #if request.method == 'GET':
+    if request.method == 'POST':
+        #title = request.GET['title']
+        #content = request.GET['content']
+        #public = request.GET['public']
+        title = request.POST['title']
+        content = request.POST['content']
+        public = request.POST['public']
+        
+        if len(title) <= 5:
+            return HttpResponse("El título es muy pequeño")
+
+        articulo = Article(
+            title = title,
+            content = content,
+            public = public
+        )
+        articulo.save()
+    
+        return HttpResponse(f"Articulo creado: {articulo.title}--->{articulo.content}")
+
+    else:
+        return HttpResponse("<h2>No se ha podido crear el artículo</h2>")
+
+    return HttpResponse('')
+
+def create_article(request):
+    
+    return render(request, 'create_article.html')
+
+def create_full_article(request):
+    if request.method == 'POST':
+        formulario = FormArticle(request.POST)
+
+        if formulario.is_valid():
+            data_form = formulario.cleaned_data
+
+            title = data_form.get('title')
+            content = data_form['content']
+            public = data_form['public']
+
+            articulo = Article(
+                title = title,
+                content = content,
+                public = public
+            )
+
+            articulo.save()
+
+            #return HttpResponse(articulo.title + ' ' + articulo.content + ' ' + str(articulo.public))
+
+            #Crear mensaje flash (sesión que solo se muestra una vez)
+            messages.success(request, f'Artículo {articulo.title} generado correctamente!')            
+
+            return redirect('articulos')
+            
+    else:
+        formulario = FormArticle()
+
+    return render(
+        request, 
+        'create_full_article.html',
+        {
+            'form': formulario
+        }
+    )
+
 def articulo(request):
     try:
         articulo = Article.objects.get(pk=1)
@@ -128,7 +198,7 @@ def editar_articulo(request, id):
 
 def articulos(request):
     #articulos = Article.objects.all()
-    #articulos = Article.objects.all().order_by('-id') #- DESC
+    articulos = Article.objects.all().order_by('-id') #- DESC
     #articulos = Article.objects.all().order_by('-id')[:1]
 
     #articulos = Article.objects.filter(title="myarticle", id=1)
@@ -147,9 +217,9 @@ def articulos(request):
     #Para consultas SQL:
     #articulos = Article.objects.raw("SELECT * FROM miapp_article WHERE title = 'Articulo 2' AND public = true")
     
-    articulos = Article.objects.filter(
-        Q(title__contains="Art") | Q(public__contains=True)
-    )
+    #articulos = Article.objects.filter(
+    #    Q(title__contains="Art") | Q(public__contains=True)
+    #)
 
     return render(request, 'articulos.html', {
         'articulos': articulos
