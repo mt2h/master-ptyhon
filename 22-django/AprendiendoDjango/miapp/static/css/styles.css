@@ -194,6 +194,62 @@ nav ul li a:hover {
     margin-top: 5px;
 }
 
+.article-item{
+    margin-bottom: 20px;
+    margin-top: 20px;
+    border-bottom: 1px solid #eee;
+    padding: 15px;
+    clear: both;
+}
+
+.article-item .image{
+    width: 200px;
+    height: 200px;
+    float: left;
+    overflow: hidden;
+}
+
+.article-item .image img{
+    width: 200px;
+}
+
+.article-item .data{
+    float: left;
+    padding: 15px;
+    padding-top: 0px;
+}
+
+.article-item h2{
+    display: block;
+    margin-bottom: 10px;
+    font-size: 25px;
+    color: #333;
+}
+
+.article-item span.date{
+    display: block;
+    margin-bottom: 10px;
+    font-size: 15px;
+    color: gray;
+}
+
+.clearfix{
+    clear: both;
+    float: none;
+}
+
+.btn{
+    width: 50px;
+    padding: 10px;
+    background: rgb(194, 55, 55);
+    color: white;
+    border: 1px solid black;
+    display: block;
+    width: 100px;
+    margin-top: 15px;
+    text-align: center;
+}
+
 footer {
     width: 1260px;
     background-color: #1b1e1f;
