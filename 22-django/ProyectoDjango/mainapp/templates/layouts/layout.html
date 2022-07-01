@@ -33,6 +33,11 @@
                     <!--<a href = '/'>Inicio</a>-->
                     <a href="{% url 'index' %}"><strong>Inicio</strong></a>
                 </li>
+                {% for page in pages %}
+                <li>
+                    <a href="#">{{ page.1 }}</a>
+                </li>
+                {% endfor %}
             </ul>
         </nav>
 

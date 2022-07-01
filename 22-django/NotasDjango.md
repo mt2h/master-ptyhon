@@ -12,6 +12,7 @@ _**pip install Django==3.0.5**_
 Para ver que versión de Django tenemos instalada:
 
 _**python3 -m django --version**_
+__**sudo apt-get install python3-tk**
 
 ## Creación de un proyecto en Django.
 Para crear el proyecto de Django con el nombre _AprendiendoDjango_, navegamos hacia el directorio que nos interese y utilizamos el comando _django-admin_ con los siguientes parámetros:
