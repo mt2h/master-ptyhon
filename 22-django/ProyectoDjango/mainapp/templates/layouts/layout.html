@@ -35,7 +35,8 @@
                 </li>
                 {% for page in pages %}
                 <li>
-                    <a href="#">{{ page.1 }}</a>
+                    {% comment "" %}position: 0 id, 1 name, 2 slug {% endcomment %}
+                    <a href="{% url 'page' page.2 %}">{{ page.1 }}</a> 
                 </li>
                 {% endfor %}
             </ul>
