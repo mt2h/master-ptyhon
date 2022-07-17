@@ -19,4 +19,10 @@ python manage.py migrate
 
 #admin
 python manage.py createsuperuser
+
+pip install django-ckeditor
+
+python manage.py makemigrations #add new file migration 0002
+python manage.py sqlmigrate pages 0002 #view as to migration
+python manage.py migrate #apply migration
 ```

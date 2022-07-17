@@ -37,6 +37,7 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
+    'ckeditor',
     'mainapp',
     'pages.apps.PagesConfig'
 ]
@@ -121,3 +122,17 @@ USE_TZ = True
 # https://docs.djangoproject.com/en/3.0/howto/static-files/
 
 STATIC_URL = '/static/'
+
+#CKEditor
+
+CKEDITOR_CONFIGS = {
+    'default': {
+        'toolbar': 'Custom',
+        'toolbar_Custom': [
+            ['Bold', 'Italic', 'Underline'],
+            ['NumberedList', 'BulletedList', '-', 'Outdent', 'Ident', 'JustifyLeft', 'JustifyCenter', 'JustifyRight'],
+            ['Link', 'Unlink'],
+            ['RemoveFormat', 'Source', 'Table', 'Image']
+        ]
+    }
+}
