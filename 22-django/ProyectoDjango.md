@@ -18,9 +18,10 @@ python manage.py sqlmigrate pages 0001 #generate code sql to deploy on database
 python manage.py migrate
 
 #admin
-python manage.py createsuperuser
+python manage.py createsuperuser #admin | admin
 
-pip install django-ckeditor
+pip install django-ckeditor==6.1.0
+python -m pip install Pillow
 
 python manage.py makemigrations #add new file migration 0002
 python manage.py sqlmigrate pages 0002 #view as to migration

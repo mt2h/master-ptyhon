@@ -8,6 +8,7 @@ Para instalar Django vamos a la página de [descarga] de Django y seguimos las i
 Para la instalación se utiliza pip. Por ejemplo, para instalar la versión 3.0.9 se utiliza el comando (en modo administrador):
 
 _**pip install Django==3.0.5**_
+_**pip install django-ckeditor==6.1.0**_
 
 Para ver que versión de Django tenemos instalada:
 
