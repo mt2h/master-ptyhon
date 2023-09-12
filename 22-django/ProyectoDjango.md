@@ -28,4 +28,4 @@ python manage.py sqlmigrate pages 0002 #view as to migration
 python manage.py migrate #apply migration
 ```
 
-La carpeta template dentro de una app y el urls.py se crean a mano
+La carpeta template, media, static dentro de una app y el urls.py, processor.py se crean a mano

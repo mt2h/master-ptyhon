@@ -33,6 +33,16 @@
                     <!--<a href = '/'>Inicio</a>-->
                     <a href="{% url 'index' %}"><strong>Inicio</strong></a>
                 </li>
+                <li>
+                    <a href="{% url 'list_articles' %}">Categorías</a>
+                    <ul>
+                        {% for category in categories %}
+                        <li>
+                            <a href="{% url 'category' category.0 %}">{{ category.1 }}</a> 
+                        </li>
+                        {% endfor %}
+                    </ul>
+                </li>
                 {% for page in pages %}
                 <li>
                     {% comment "" %}position: 0 id, 1 name, 2 slug {% endcomment %}
