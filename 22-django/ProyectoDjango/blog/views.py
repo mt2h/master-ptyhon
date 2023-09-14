@@ -12,7 +12,17 @@ def list(request):
 
 def category(request, category_id):
     category = get_object_or_404(Category, id=category_id)
+    #articles = Article.objects.filter(categories=category_id)
+    #articles = Article.objects.filter(categories=category)
 
     return render(request, 'categories/category.html', {
-        'category': category
+        'category': category,
+        #'articles': articles
+        })
+
+def article(request, article_id):
+    article = get_object_or_404(Article, id=article_id)
+
+    return render(request, 'articles/detail.html', {
+        'article': article
         })
