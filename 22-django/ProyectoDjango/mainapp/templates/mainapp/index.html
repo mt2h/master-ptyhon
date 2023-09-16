@@ -1,10 +1,16 @@
 {% extends 'layouts/layout.html' %}
 
-{% block title %}
-    {{title}}
-{% endblock %}
+{% block title %} {{title}} {% endblock %}
 
 {% block content %}
     <h1>{{title}}</h1>
-    {{pages}}
+
+    {% if messages %}
+        {% for message in messages %}
+            <div class="alert alert-success">
+                {{message}}
+            </div>
+        {% endfor %}
+    {% endif %}
+    {% comment %}{{pages}}{% endcomment %}
 {% endblock %}

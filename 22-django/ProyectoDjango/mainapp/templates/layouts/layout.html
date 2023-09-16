@@ -49,6 +49,9 @@
                     <a href="{% url 'page' page.2 %}">{{ page.1 }}</a> 
                 </li>
                 {% endfor %}
+                <li>
+                    <a href="{% url 'register' %}"><strong>Registro</strong></a>
+                </li>
             </ul>
         </nav>
 
@@ -64,7 +67,7 @@
             <div class="box">
                 {% block content %}
                     <!--Código que viene de templates-->
-                    <strong>Contenido del bloque original!!></strong>
+                    <!-- <strong>Contenido del bloque original!!</strong> -->
                 {% endblock %}
             </div>
         </div>
