@@ -29,3 +29,19 @@ python manage.py migrate #apply migration
 ```
 
 La carpeta template, media, static dentro de una app y el urls.py, processor.py se crean a mano
+
+instalar mysql
+
+```bash
+sudo apt-get install libmysqlclient-dev
+pip install mysqlclient --global-option=build_ext --global-option="-I/usr/include/mysql"
+pip install mysqlclient
+```
+
+Ingresar a PhpMyAdmin como server "db"
+
+Luego, ejecutar migrate
+
+```bash
+python manage.py migrate
+```
