@@ -2,26 +2,35 @@
 <html lang="es">
     <head>
         <meta charset="utf-8" />
-        <title>{% block title %} Master en Python {% endblock %} | Aprendiendo Flask con Victor Robles</title>
+        <title>{% block title %} {% endblock %} | Aprendiendo Flask con Víctor Robles</title>
+        <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
     </head>
     <body>
-        <h1>Aprendiendo Flask con Victor Robles</h1>
-        <hr />
+        <header>
+            <div id="logotipo">
+                <img src="{{ url_for('static', filename='img/logo.png') }}" />
+                <h1>Flask con Víctor Robles</h1>
+            </div>
+        </header>
+        <nav>
             <ul>
                 <li><a href="/">Inicio</a></li>
                 <li><a href="{{ url_for('informacion') }}">Información</a></li>
                 <li><a href="{{ url_for('contacto') }}">Contacto</a></li>
                 <li><a href="{{ url_for('lenguajes') }}">Lenguajes de programación</a></li>
             </ul>
-        <hr />
-        <section id="content">
-            {% block content %}
-
-            {% endblock %}
-        </section>
-    </body>
-    <hr />
-    <footer>
-        Master en Python con Victor Robles
-    </footer>
+        </nav>
+        <div class="barra">
+            <span class="esquina-izquierda"></span>
+            <span class="relleno-barra"></span>
+            <span class="esquina-derecha"></span>
+        </div>
+        <div id="content">
+            <div class="box">
+                {% block content %}{% endblock %}
+            </div>
+        </div>
+        <footer>
+            Master en python &copy; Víctor Robles Web - {{ now.month }}/{{ now.year }}
+        </footer>
 </html>

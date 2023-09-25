@@ -1,11 +1,28 @@
 from flask import Flask, redirect, url_for, render_template
+from datetime import datetime
 
 app = Flask(__name__)
 
+#context processors
+@app.context_processor
+def date_now():
+    return {
+        'now': datetime.utcnow()
+        }
+
+#endpoints
 @app.route('/')
 def index():
+    edad = 18
+    personas = ['Víctor', 'Paco', 'Francisco', 'David']
     #return "Aprendiendo Flask con Víctor Robles"
-    return render_template('index.html')
+    return render_template('index.html', 
+                           edad=edad,
+                           dato1="valor",
+                           dato2="valor2",
+                           lista=["uno", "dos", "tres"],
+                           personas=personas
+                        )
 
 @app.route('/informacion')
 @app.route('/informacion/<string:nombre>')
