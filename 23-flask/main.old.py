@@ -1,17 +1,7 @@
-from flask import Flask, flash, redirect, url_for, render_template, request
-from flask_mysqldb import MySQL
+from flask import Flask, redirect, url_for, render_template
 from datetime import datetime
 
 app = Flask(__name__)
-app.secret_key = 'clave_secreta_flask'
-
-#db connection
-app.config['MYSQL_HOST'] = 'localhost'
-app.config['MYSQL_USER'] = 'admin'
-app.config['MYSQL_PASSWORD'] = 'admin'
-app.config['MYSQL_DB'] = 'proyectoflask'
-
-mysql = MySQL(app)
 
 #context processors
 @app.context_processor
@@ -25,6 +15,7 @@ def date_now():
 def index():
     edad = 18
     personas = ['Víctor', 'Paco', 'Francisco', 'David']
+    #return "Aprendiendo Flask con Víctor Robles"
     return render_template('index.html', 
                            edad=edad,
                            dato1="valor",
@@ -39,7 +30,14 @@ def index():
 def informacion(nombre=None, apellidos=None):
     texto = ""
     if nombre != None and apellidos != None:
+        #texto = f"<h3>Bienvenido, {nombre} {apellidos}</h3>"
         texto = f"Bienvenido, {nombre} {apellidos}"
+
+    #return f"""
+    #    <h1>Página de información</h1>
+    #    <p>Esta es la página de información</p>
+    #    {texto}
+    #"""
 
     return render_template('informacion.html', 
                            texto=texto
@@ -51,29 +49,13 @@ def contacto(redireccion=None):
     if redireccion is not None:
         return redirect(url_for('lenguajes'))
 
+    #return "<h1>Página de contacto</h1>"
     return render_template('contacto.html')
 
 @app.route('/lenguajes-de-programacion')
 def lenguajes():
+    #return "<h1>Página de lenguajes de programación</h1>"
     return render_template('lenguajes.html')
-
-@app.route('/crear-coche', methods=['GET', 'POST'])
-def crear_coche():
-    if request.method == 'POST':
-        marca = request.form['marca']
-        modelo = request.form['modelo']
-        precio = request.form['precio']
-        ciudad = request.form['ciudad']
-
-        cursor = mysql.connection.cursor()
-        cursor.execute(f"INSERT INTO coches VALUES(NULL, %s, %s, %s, %s)", (marca, modelo, precio, ciudad))
-        cursor.connection.commit()
-
-        flash('Has creado el coche correctamente!')
-
-        return redirect(url_for('index'))
-
-    return render_template('crear_coche.html')
 
 if __name__ == '__main__':
     app.run(debug=True)

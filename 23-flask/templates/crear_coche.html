@@ -1,0 +1,25 @@
+{% extends 'layout.html' %}
+
+{% block title %}Crear coche{% endblock %}
+
+{% block content %}
+
+    <h1>Crear coche</h1>
+
+    <form action="" method="post">
+        <label for="marca">Marca</label>
+        <input type="text" name="marca" />
+
+        <label for="modelo">Modelo</label>
+        <input type="text" name="modelo" />
+
+        <label for="precio">Precio</label>
+        <input type="number" name="precio" />
+
+        <label for="ciudad">Ciudad</label>
+        <input type="text" name="ciudad" />
+
+        <input type="submit" value="Guardar" />
+    </form>
+
+{% endblock %}
