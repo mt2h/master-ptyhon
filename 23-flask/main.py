@@ -75,5 +75,23 @@ def crear_coche():
 
     return render_template('crear_coche.html')
 
+@app.route('/coches')
+def coches():
+    cursor = mysql.connection.cursor()
+    cursor.execute("SELECT * FROM coches")
+    coches = cursor.fetchall()
+    cursor.close()
+
+    return render_template('coches.html', coches=coches)
+
+@app.route('/coche/<coche_id>')
+def coche(coche_id):
+    cursor = mysql.connection.cursor()
+    cursor.execute("SELECT * FROM coches WHERE id = %s", (coche_id))
+    coche = cursor.fetchall()
+    cursor.close()
+
+    return render_template('coche.html', coche=coche[0])
+
 if __name__ == '__main__':
     app.run(debug=True)

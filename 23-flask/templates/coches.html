@@ -1,0 +1,26 @@
+{% extends 'layout.html' %}
+
+{% block title %}Coches{% endblock %}
+
+{% block content %}
+
+    <h1>Coches</h1>
+
+    {% for coche in coches %}
+        <article class="article-item">
+            <div class="data">
+                <h2>
+                    <a href="{{ url_for('coche', coche_id=coche.0) }}">{{coche.1}}</a>
+                </h2>
+                <span>
+                    {{coche.2}} | {{coche.3}}
+                </span>
+                <p>{{coche.4}}</p>
+                <p><a href="" class="btn btn-warning">Editar</a></p>
+                <p><a href="" class="btn">Eliminar</a></p>
+            </div>
+            <div class="clearfix"></div> 
+        </article>   
+    {% endfor %}
+
+{% endblock %}

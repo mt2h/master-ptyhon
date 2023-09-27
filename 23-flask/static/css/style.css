@@ -242,12 +242,16 @@ nav ul li a:hover {
     width: 50px;
     padding: 10px;
     background: rgb(194, 55, 55);
-    color: white;
+    color: white !important;
     border: 1px solid black;
     display: block;
     width: 100px;
     margin-top: 15px;
     text-align: center;
+}
+
+.btn-warning{
+    background: rgb(243, 162, 32);
 }
 
 footer {
