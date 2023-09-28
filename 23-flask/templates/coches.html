@@ -4,7 +4,15 @@
 
 {% block content %}
 
-    <h1>Coches</h1>
+    <h1>Listado de coches</h1>
+
+    {% with messages = get_flashed_messages() %}
+        {% if messages %}
+            {% for message in messages %}
+                <div class="message alert-success">{{message}}</div>
+            {% endfor %}
+        {% endif %}
+    {% endwith %}
 
     {% for coche in coches %}
         <article class="article-item">
@@ -16,8 +24,8 @@
                     {{coche.2}} | {{coche.3}}
                 </span>
                 <p>{{coche.4}}</p>
-                <p><a href="" class="btn btn-warning">Editar</a></p>
-                <p><a href="" class="btn">Eliminar</a></p>
+                <p><a href="{{ url_for('editar_coche', coche_id=coche.0) }}" class="btn btn-warning">Editar</a></p>
+                <p><a href="{{ url_for('borrar_coche', coche_id=coche.0) }}" class="btn">Eliminar</a></p>
             </div>
             <div class="clearfix"></div> 
         </article>   
